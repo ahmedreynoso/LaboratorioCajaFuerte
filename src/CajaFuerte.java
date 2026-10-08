@@ -6,6 +6,7 @@ public class CajaFuerte {
     private byte intentosFallidos;
     private double capacidadMaxima;
     private double saldoActual;
+    private boolean alarmaActivada;
 
     public CajaFuerte(long numeroSerie, String modelo,
                       int claveAcceso, double capacidadMaxima) {
@@ -16,11 +17,13 @@ public class CajaFuerte {
         estado = false; // la caja se encuentra cerrada
         intentosFallidos = 0;
         saldoActual = 0.0;
+        alarmaActivada = false;
     }
 
     public void abrir(int claveIngresada){
         if (intentosFallidos >= 3){
             System.out.println("Caja fuerte bloqueada");
+            alarmaActivada = true;
             return;
         }
 
@@ -31,12 +34,12 @@ public class CajaFuerte {
 
         if (claveIngresada == claveAcceso){
             estado = true; // la caja ha sido abierta
-            intentosFallidos = 0; // se reinician los intentos
+            intentosFallidos = 0;
             System.out.println("Acceso autorizado");
         } else {
-            intentosFallidos++; // suma 1 a intentosFallidos
+            intentosFallidos++;
 
-            // CORRECCIÓN: Se arregló el formato del cálculo matemático
+
             System.out.println("Clave incorrecta. Intentos restantes: " + (3 - intentosFallidos));
 
             if (intentosFallidos >= 3) {
@@ -105,6 +108,14 @@ public class CajaFuerte {
         }else{
             System.out.println("Saldo: información protegida");
         }
+
+        if(alarmaActivada == false){
+            System.out.println("La alarma esta apagada");
+        } else{
+            System.out.println("Alarma activada");
+        }
     }
+
+
 
 }
