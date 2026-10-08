@@ -4,9 +4,13 @@ public class Main {
         CajaFuerte caja = new CajaFuerte(20260001L, "SecureBox A1", 1234, 50000.0);
         System.out.println("Caja fuerte creada correctamente");
 
-        caja.abrir(2031);
-        caja.abrir(2032);
-        caja.abrir(2034);
+        caja.abrir(1234);
+        caja.depositar(1500);
+        caja.retirar(500);
+        caja.mostrarEstado();
+        caja.cerrar();
+        caja.depositar(1000);
+
 
     }
 }
